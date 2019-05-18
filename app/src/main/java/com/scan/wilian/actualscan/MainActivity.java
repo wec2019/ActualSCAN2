@@ -22,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
+    
+    //Initializes iBeacon apps including monitoring and notifications.
+    //Will also ask permissions to use GPS.
     @Override
     protected void onResume() {
         super.onResume();
