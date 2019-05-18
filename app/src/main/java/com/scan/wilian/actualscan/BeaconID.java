@@ -5,6 +5,8 @@ import com.estimote.coresdk.observation.region.beacon.BeaconRegion;
 
 import java.util.UUID;
 
+//Estimote SDK file used to set up the public classes and variables to identify the iBeacons
+
 public class BeaconID {
 
     private UUID proximityUUID;
