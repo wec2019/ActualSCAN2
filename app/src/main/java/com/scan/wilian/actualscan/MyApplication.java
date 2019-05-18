@@ -8,7 +8,7 @@ import com.scan.wilian.actualscan.BeaconID;
 import com.scan.wilian.actualscan.BeaconNotificationsManager;
 
 //
-// Running into any issues? Drop us an email to: contact@estimote.com
+// Logs into the owner account and identifies the beacons
 //
 
 public class MyApplication extends Application {
@@ -20,7 +20,7 @@ public class MyApplication extends Application {
 
         // TODO: put your App ID and App Token here
         // You can get them by adding your app on https://cloud.estimote.com/#/apps
-        EstimoteSDK.initialize(getApplicationContext(), "<scan2019-5xz>", "<9b3bb15783e59a43d6db81defffa604f>");
+        EstimoteSDK.initialize(getApplicationContext(), "<APP ID HERE>", "<Token HEre>");
 
         // uncomment to enable debug-level logging
         // it's usually only a good idea when troubleshooting issues with the Estimote SDK
@@ -32,17 +32,18 @@ public class MyApplication extends Application {
         if (beaconNotificationsEnabled) { return; }
 
         BeaconNotificationsManager beaconNotificationsManager = new BeaconNotificationsManager(this);
+        //Notification is created for each beacon
         beaconNotificationsManager.addNotification(
                 // TODO: replace with UUID, major and minor of your own beacon
-                new BeaconID("B9407F30-F5F8-466E-AFF9-25556B57FE6D", 995, 40651),
+                new BeaconID("UUID", "Major", "Minor"),
                 "Hello, green.",
                 "Goodbye, green.");
         beaconNotificationsManager.addNotification(
-                new BeaconID("B9407F30-F5F8-466E-AFF9-25556B57FE6D", 28803, 64459),
-                "Hello, world.",
-                "Goodbye, world.");
+                new BeaconID("UUID", "Major", "Minor"),
+                "Hello, purple.",
+                "Goodbye, purple.");
         beaconNotificationsManager.addNotification(
-                new BeaconID("B9407F30-F5F8-466E-AFF9-25556B57FE6D", 30351, 55051),
+                new BeaconID("UUID", "Major", "Minor"),
                 "Hello, blue.",
                 "Goodbye, blue.");
         beaconNotificationsManager.startMonitoring();
