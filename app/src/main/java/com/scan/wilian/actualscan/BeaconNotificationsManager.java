@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+// Estimote SDK file that provides class and variables to make beacon notifications
+
 public class BeaconNotificationsManager {
 
     private static final String TAG = "BeaconNotifications";
@@ -30,11 +32,16 @@ public class BeaconNotificationsManager {
     private Context context;
 
     private int notificationID = 0;
-
+    
+    //Configures message for notification 
     public BeaconNotificationsManager(Context context) {
         this.context = context;
         beaconManager = new BeaconManager(context);
+        //setMonitoringListener monitors for the beacons
         beaconManager.setMonitoringListener(new BeaconManager.BeaconMonitoringListener() {
+            //Override for entering the beacon range.
+            //Logs notes, provides string for message that will be on the notification
+            //when entering the beacon range.
             @Override
             public void onEnteredRegion(BeaconRegion region, List<Beacon> list) {
                 Log.d(TAG, "onEnteredRegion: " + region.getIdentifier());
@@ -43,7 +50,10 @@ public class BeaconNotificationsManager {
                     showNotification(message);
                 }
             }
-
+               
+            //Override for exiting the beacon range.
+            //Logs notes, provides string for message that will be on the notification
+            //when exiting the beacon range.
             @Override
             public void onExitedRegion(BeaconRegion region) {
                 Log.d(TAG, "onExitedRegion: " + region.getIdentifier());
@@ -54,14 +64,16 @@ public class BeaconNotificationsManager {
             }
         });
     }
-
+    
+    //Adds the notifications to the beacon
     public void addNotification(BeaconID beaconID, String enterMessage, String exitMessage) {
         BeaconRegion region = beaconID.toBeaconRegion();
         enterMessages.put(region.getIdentifier(), enterMessage);
         exitMessages.put(region.getIdentifier(), exitMessage);
         regionsToMonitor.add(region);
     }
-
+    
+    //Initializes bluetooth monitoring of region for beacons
     public void startMonitoring() {
         beaconManager.connect(new BeaconManager.ServiceReadyCallback() {
             @Override
@@ -72,7 +84,7 @@ public class BeaconNotificationsManager {
             }
         });
     }
-
+    //Configures how notification will appear on Android Phone
     private void showNotification(String message) {
         Intent resultIntent = new Intent(context, MainActivity.class);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(
