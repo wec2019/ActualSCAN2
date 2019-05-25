@@ -14,6 +14,10 @@ The modified files will all be under the ActualSCAN2/app folder.
   - Naming the .MyApplication is important when using variables and classes from MyApplication
 - The Java files under app/src/main/java/com/scan/wilian/actualscan/ provide the main functionality of this app.
 
+
+## Implementation with full SCAN application 
+This code was added to the main SCAN application. There were no errors when the application ran but the beacon monitoring function did not run in the background. Even after removing the system requirement checks, it did not run. We attempted to go in and out of range of the beacons but the notification never displayed. We did not attempt to check the logs, it could have been possible that it did detect the beacons, just that the notifications were disabled.
+
 ## Authors
 - Wilian Chauca
 - Juan Sigua
